@@ -1,8 +1,8 @@
 from django.conf.urls import patterns, include, url
 
 # Uncomment the next two lines to enable the admin:
-# from django.contrib import admin
-# admin.autodiscover()
+from django.contrib import admin
+admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
@@ -13,7 +13,14 @@ urlpatterns = patterns('',
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
-    # url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', include(admin.site.urls)),
 
-    url(r'^$', 'helloworld.views.main')
+    # helloworld
+    url(r'^$', 'helloworld.views.main'),
+
+    # poils
+    url(r'^polls/$', 'poils.views.index'),
+    url(r'^polls/(?P<poll_id>\d+)/$', 'poils.views.detail'),
+    url(r'^polls/(?P<poll_id>\d+)/results/$', 'poils.views.results'),
+    url(r'^polls/(?P<poll_id>\d+)/vote/$', 'poils.views.vote'),
 )
